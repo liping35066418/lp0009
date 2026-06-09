@@ -10,7 +10,7 @@ interface Model3DProps {
   scale?: [number, number, number];
   selected?: boolean;
   onClick?: (e: ThreeEvent<MouseEvent>) => void;
-  onPointerDown?: (e: ThreeEvent<PointerEvent>) => void;
+  onPointerDown?: (e: ThreeEvent<PointerEvent>, groupRef: React.RefObject<THREE.Group>) => void;
   onPointerUp?: (e: ThreeEvent<PointerEvent>) => void;
 }
 
@@ -37,7 +37,7 @@ export const Model3D: React.FC<Model3DProps> = ({
       rotation={rotation}
       scale={scale}
       onClick={onClick}
-      onPointerDown={onPointerDown}
+      onPointerDown={(e) => onPointerDown && onPointerDown(e, groupRef)}
       onPointerUp={onPointerUp}
     >
       {geometry}
