@@ -6,6 +6,7 @@ import { SpaceConfigPanel } from './components/SpaceConfigPanel';
 import { ModelLibrary } from './components/ModelLibrary';
 import { ModelInfoPanel } from './components/ModelInfoPanel';
 import { Toolbar } from './components/Toolbar';
+import { PlacedItemsList } from './components/PlacedItemsList';
 import { getModelById } from './data/modelLibrary';
 
 const API_BASE = window.location.port === '3000' ? '/api' : '/api';
@@ -216,6 +217,13 @@ function App() {
         </main>
 
         <aside className="right-sidebar">
+          <PlacedItemsList
+            placedModels={placedModels}
+            selectedModelId={selectedModelId}
+            onSelectModel={setSelectedModelId}
+            onDelete={handleDelete}
+          />
+
           <ModelInfoPanel
             placedModel={selectedModel}
             onClose={() => setSelectedModelId(null)}
